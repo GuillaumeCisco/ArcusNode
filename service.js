@@ -23,7 +23,7 @@ var util = require('util');
 var ArcusNode = require('./lib/arcus_node.js');
 
 //Take command line arguments
-var settings = {};
+var settings = {'address': '127.0.0.1'};
 process.argv.forEach(function (val, index, array) {
   if(index < 2)
     return;
@@ -72,6 +72,26 @@ process.on('SIGINT', function () {
 });
 process.on('exit', function(){
   util.print('\033[36mArcusNode stopped.\033[0m\n');
+});
+
+arc.on('handshake', function(){
+    console.log('EVENT handshake works.');
+});
+
+arc.on('connect', function(){
+    console.log('EVENT connect works.');
+});
+
+arc.on('address', function(){
+    console.log('EVENT address works.');
+});
+
+arc.on('command', function(){
+    console.log('EVENT commands works.');
+});
+
+arc.on('disconnect', function(){
+    console.log('EVENT disconnect works.');
 });
 
 util.print('ArcusNode RTMFP Service running at ' + arc.address.address + ((arc.address.port != '') ? ':' + arc.address.port : '') + '\n');

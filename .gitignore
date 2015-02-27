@@ -4,3 +4,5 @@ build
 *.sublime-project
 *.sublime-workspace
 ._*
+.idea/*
+node_modules
